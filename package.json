@@ -1,7 +1,7 @@
 {
   "name": "ant-lunar-picker",
   "version": "1.0.0",
-  "description": "适用于antd的农历日期选择器",
+  "description": "适用于antd的农历日期选择器1",
   "main": "index.js",
   "scripts": {
     "prepare": "husky install"
@@ -29,7 +29,7 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-webpack-plugin": "^3.2.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "13.0.3",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.3.1",
