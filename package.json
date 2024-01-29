@@ -1,0 +1,50 @@
+{
+  "name": "ant-lunar-picker",
+  "version": "1.0.0",
+  "description": "适用于antd的农历日期选择器",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "antd",
+    "lunar",
+    "date-picker"
+  ],
+  "author": "slatejack",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.23.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-webpack-plugin": "^3.2.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.6",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.8.3",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js}": [
+      "npm run lint"
+    ]
+  },
+  "dependencies": {
+    "antd": "^5.13.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
