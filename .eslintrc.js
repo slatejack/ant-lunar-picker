@@ -8,7 +8,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,9 +20,11 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'import',
   ],
   rules: {
+    'react/prop-types': 'off',
     'linebreak-style': [
       'error',
       'unix'
@@ -36,5 +38,24 @@ module.exports = {
       'always'
     ],
     '@typescript-eslint/no-var-requires': 0,
+    'import/order': [
+      'error',
+      {
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@/**',
+            group: 'internal',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: [],
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+      },
+    ],
   }
 };

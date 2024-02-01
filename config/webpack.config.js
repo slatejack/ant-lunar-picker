@@ -2,8 +2,6 @@ const path = require('path');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
 const resolve = filePath => path.join(__dirname, filePath);
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -35,6 +33,11 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css'],
     alias: {
       '@': resolve('../src'),
+    },
+    fallback: {
+      'stream': require.resolve('stream-browserify'),
+      'buffer': require.resolve('buffer/')
+      // 其他需要的 node.js 核心模块
     },
   },
   plugins: [new ESLintWebpackPlugin()],
