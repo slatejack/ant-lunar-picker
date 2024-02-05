@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -6,8 +7,9 @@ const resolve = filePath => path.join(__dirname, filePath);
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  entry: './app.ts',
+  entry: resolve('../src/lunarDatePicker.tsx'),
   devtool: isDev ? 'eval-cheap-source-map' : 'hidden-source-map',
+  // devtool: 'eval-cheap-source-map',
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -25,8 +27,11 @@ module.exports = {
     path: resolve('../dist/'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
+    clean: true,
     library: {
-      type: 'commonjs-static',
+      name: 'ant-lunar-picker',
+      type: 'umd',
+      umdNamedDefine: true,
     },
   },
   resolve: {
@@ -40,14 +45,29 @@ module.exports = {
       // 其他需要的 node.js 核心模块
     },
   },
-  plugins: [new ESLintWebpackPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new ESLintWebpackPlugin({
+      context: 'src/',
+      extensions: ['js', 'jsx', 'ts', 'tsx']
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.ts[x]?$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader:'babel-loader',
+          },
+        ],
         exclude: /node_modules/,
       },
     ]
+  },
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom',
+    'antd': 'antd'
   },
 };

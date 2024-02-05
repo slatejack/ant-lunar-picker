@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import { Lunar } from 'lunar-typescript';
 import dayjs, { Dayjs } from 'dayjs';
 import { Col, Radio, Row, Select } from 'antd';
@@ -15,12 +15,12 @@ const LunarCalendarHeader: React.FC<CalenderHeaderType> = ({
   dateType,
   onDateTypeChange,
 }) => {
-  const [monthOptions, setMonthOptions] = useState<CalenderOptions[]>([]);
-  const [options, setOptions] = useState<CalenderOptions[]>([]);
-  const [month, setMonth] = useState<number>(0);
-  const [year, setYear] = useState<number>(0);
+  const [monthOptions, setMonthOptions] = React.useState<CalenderOptions[]>([]);
+  const [options, setOptions] = React.useState<CalenderOptions[]>([]);
+  const [month, setMonth] = React.useState<number>(0);
+  const [year, setYear] = React.useState<number>(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     formatOptions(value, dateType);
   }, [value, dateType]);
 
