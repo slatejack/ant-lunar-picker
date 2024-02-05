@@ -1,8 +1,8 @@
 import React from 'react';
 import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
-import { LunarDatePickerType } from '@/types';
 import LunarCalendar from '@/components/LunarCalendar';
+import { LunarDatePickerType } from './types';
 
 const LunarDatePicker: React.FC<LunarDatePickerType> = ({value, onChange}) => {
   const [calenderIsOpen, setCalenderIsOpen] = React.useState(false);

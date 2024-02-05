@@ -1,6 +1,6 @@
 {
   "name": "ant-lunar-picker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "适用于antd的农历日期选择器",
   "main": "dist/main.js",
   "module": "dist/main.js",
