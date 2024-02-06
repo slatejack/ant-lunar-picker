@@ -11,9 +11,12 @@ module.exports = {
   devtool: isDev ? 'eval-cheap-source-map' : 'hidden-source-map',
   // devtool: 'eval-cheap-source-map',
   optimization: {
+    minimize: !isDev,
     minimizer: [
       new TerserPlugin({
+        test: /\.ts[x]?$/,
         parallel: 4,
+        minify: TerserPlugin.swcMinify,
         terserOptions: {
           compress: {
             ecma: 5,
@@ -21,7 +24,7 @@ module.exports = {
           },
         },
       }),
-    ]
+    ],
   },
   output: {
     path: resolve('../dist/'),
