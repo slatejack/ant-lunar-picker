@@ -8,16 +8,15 @@ import LunarCalendarHeader from '@/components/LunarCalendarHeader';
 import { CALENDER_DATE_TYPE } from '@/constants';
 import { useCalendarStyle } from './hooks/useCalendarStyle';
 
-const LunarCalendar: React.FC<LunarCalendarType> = ({ value, onChange, setCalenderIsOpen }) => {
+const LunarCalendar: React.FC<LunarCalendarType> = ({
+  value,
+  onChange,
+  setCalenderIsOpen,
+  onDateTypeChange,
+  onDateChange,
+}) => {
   const { styles } = useCalendarStyle();
   const { type = 'normal', selectDate = dayjs() } = value || {};
-
-  const onDateChange: CalendarProps<Dayjs>['onSelect'] = (value, selectInfo) => {
-    if (selectInfo.source === 'date') {
-      onChange?.({ type, selectDate: value });
-      setCalenderIsOpen(false);
-    }
-  };
 
   /**
    * 渲染日历单元格
@@ -73,8 +72,17 @@ const LunarCalendar: React.FC<LunarCalendarType> = ({ value, onChange, setCalend
     }
   };
 
-  const onDateTypeChange = (type: DateType) => {
+  const handleDateTypeChange = (type: DateType) => {
     onChange?.({ type, selectDate });
+    onDateTypeChange?.(type);
+  };
+
+  const handleDateChange: CalendarProps<Dayjs>['onSelect'] = (value, selectInfo) => {
+    if (selectInfo.source === 'date') {
+      onChange?.({ type, selectDate: value });
+      onDateChange?.(value);
+      setCalenderIsOpen(false);
+    }
   };
 
   return (
@@ -82,12 +90,12 @@ const LunarCalendar: React.FC<LunarCalendarType> = ({ value, onChange, setCalend
       <Calendar
         fullCellRender={type === CALENDER_DATE_TYPE.lunar ? cellRender : undefined}
         fullscreen={false}
-        onSelect={onDateChange}
+        onSelect={handleDateChange}
         headerRender={props => (
           <LunarCalendarHeader
             {...props}
             dateType={type}
-            onDateTypeChange={onDateTypeChange}
+            onDateTypeChange={handleDateTypeChange}
             setCalenderIsOpen={setCalenderIsOpen}
           />
         )}

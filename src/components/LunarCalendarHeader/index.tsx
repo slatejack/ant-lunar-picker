@@ -81,7 +81,6 @@ const LunarCalendarHeader: React.FC<CalenderHeaderType> = ({
       <Col>
         <Select
           size="small"
-          className="my-year-select"
           value={year}
           options={options}
           onChange={(newYear) => {

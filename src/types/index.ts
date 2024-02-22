@@ -12,6 +12,8 @@ export type DateType = 'lunar' | 'normal';
 export type LunarDatePickerType = {
   value?: LunarDatePickerValue;
   onChange?: (value: LunarDatePickerValue) => void;
+  onDateTypeChange?: (type: DateType) => void;
+  onDateChange?: (value: Dayjs) => void;
 };
 
 export type CalenderHeaderType = {

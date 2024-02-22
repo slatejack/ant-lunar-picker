@@ -1,14 +1,21 @@
 import React from 'react';
-import { DatePicker } from 'antd';
+import { DatePicker, DatePickerProps } from 'antd';
 import dayjs from 'dayjs';
 import LunarCalendar from '@/components/LunarCalendar';
 import { LunarDatePickerType } from './types';
 
-const LunarDatePicker: React.FC<LunarDatePickerType> = ({value, onChange}) => {
+const LunarDatePicker: React.FC<LunarDatePickerType & DatePickerProps> = ({
+  value,
+  onChange,
+  onDateTypeChange,
+  onDateChange,
+  ...props
+}) => {
   const [calenderIsOpen, setCalenderIsOpen] = React.useState(false);
   const { selectDate = dayjs() } = value || {};
   return (
     <DatePicker
+      {...props}
       open={calenderIsOpen}
       value={selectDate}
       onClick={() => setCalenderIsOpen(true)}
@@ -18,6 +25,8 @@ const LunarDatePicker: React.FC<LunarDatePickerType> = ({value, onChange}) => {
           value={value}
           onChange={onChange}
           setCalenderIsOpen={setCalenderIsOpen}
+          onDateTypeChange={onDateTypeChange}
+          onDateChange={onDateChange}
         />
       )
     }
